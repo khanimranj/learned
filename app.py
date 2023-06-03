@@ -1,5 +1,6 @@
 #from dotenv import load_dotenv
 import streamlit as st
+import langchain
 from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings.openai import OpenAIEmbeddings
@@ -28,15 +29,11 @@ def main():
 
     # Display the logo in the top left-hand side
     st.image(logo_image, use_column_width=False, width=100)
-    
-    # upload file
-    
-    # extract the text
 
       # show user input
     user_question = st.text_input("Ask me a question about what I learned:")
     if user_question:
-        docs = knowledge_base.similarity_search(user_question)
+        docs = knowledge_base.similarity_search(user_question,5)
 
         
 
